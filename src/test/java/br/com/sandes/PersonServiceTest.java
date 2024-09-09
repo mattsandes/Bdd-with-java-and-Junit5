@@ -3,6 +3,8 @@ package br.com.sandes;
 import br.com.sandes.model.Person;
 import br.com.sandes.service.IPersonService;
 import br.com.sandes.service.PersonService;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.*;
 
 public class PersonServiceTest {
@@ -32,6 +34,13 @@ public class PersonServiceTest {
 
         //Then (Assert)
         Assertions.assertNotNull(actual, () -> "Actual object should not return null");
+
+        assertNotEquals(person.getId(), 0);
+        assertEquals("Keith", person.getName());
+        assertEquals("Moon", person.getSecondName());
+        assertEquals("kmoon@erudio.com.br", person.getEmail());
+        assertEquals("Wembley - UK", person.getAddress());
+        assertEquals("Male", person.getGender());
     }
 
     @DisplayName("When create a person with success should return a person object")
@@ -44,6 +53,12 @@ public class PersonServiceTest {
         Person actual = service.createPerson(person);
 
         //Then (Assert)
-        Assertions.assertEquals(person.getName(), actual.getName(), () -> "The first name is different");
+        assertNotNull(person.getId());
+        assertEquals(person.getName(), actual.getName(), () -> "The first name is different");
+        assertEquals("Keith", person.getName());
+        assertEquals("Moon", person.getSecondName());
+        assertEquals("kmoon@erudio.com.br", person.getEmail());
+        assertEquals("Wembley - UK", person.getAddress());
+        assertEquals("Male", person.getGender());
     }
 }

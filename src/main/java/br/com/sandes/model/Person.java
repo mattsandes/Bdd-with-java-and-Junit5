@@ -7,18 +7,18 @@ public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private long id;
+    private Long id;
     private String name;
     private String secondName;
     private String email;
     private String address;
     private String gender;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -62,7 +62,7 @@ public class Person implements Serializable {
         this.gender = gender;
     }
 
-    public Person(long id, String name, String secondName, String email, String address, String gender) {
+    public Person(Long id, String name, String secondName, String email, String address, String gender) {
         this.id = id;
         this.name = name;
         this.secondName = secondName;
@@ -88,12 +88,12 @@ public class Person implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
 
         Person person = (Person) o;
-        return id == person.id && Objects.equals(name, person.name) && Objects.equals(secondName, person.secondName) && Objects.equals(email, person.email) && Objects.equals(address, person.address) && Objects.equals(gender, person.gender);
+        return Objects.equals(id, person.id) && Objects.equals(name, person.name) && Objects.equals(secondName, person.secondName) && Objects.equals(email, person.email) && Objects.equals(address, person.address) && Objects.equals(gender, person.gender);
     }
 
     @Override
     public int hashCode() {
-        int result = Long.hashCode(id);
+        int result = Objects.hashCode(id);
         result = 31 * result + Objects.hashCode(name);
         result = 31 * result + Objects.hashCode(secondName);
         result = 31 * result + Objects.hashCode(email);
